@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Welcome </title>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>    
+    <div id="wrap">
+        <div id="header">
+          <h2 class="inline">Welcome, {{user['alias']}}</h2>
+		  <h3 class="inline">{{pokers}} people poked you</h3>
+		  <a href="/">Logout</a>
+        </div>
+    <div id="mid">
+			<div id="mypokes">
+				<ul>
+					{%for poker in poke_data%}
+					<li>{{poker['poked_by']}} poked you {{poker['count']}} times</li>
+					{%endfor%}
+				</ul>
+			</div>
+
+			<h3>People you may want to poke</h3>
+			<table class='table'>
+				<tr>
+					<th>Name</th>
+					<th>Alias</th>
+					<th>Email Address</th>
+					<th>Poke history</th>
+					<th>Action</th>
+				</tr>
+				{%for person in others_data%}
+				<tr>
+					<td>{{person['name']}}</td> 
+					<td>{{person['alias']}}</td>
+					<td>{{person['email']}}</td>
+					<td>{{person['pokes']}} pokes</td>
+					<td><form action="poke/{{person['id']}}" method='POST'><input type= 'submit' name = 'poke' value = 'Poke!'></form></td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+
+	</div>
+    </div>
+    </div>
+  </body>
+</html>
