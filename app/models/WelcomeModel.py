@@ -18,15 +18,13 @@ class WelcomeModel(Model):
 			error.append("Password should be atleast 8 characters")
 		if data['password'] != data['confirm']:
 			error.append('Password and confirm pw should match')
-		if len(data['birth_date']) < 1:
-			error.append("Birth date cannot be empty")
 
 
 		if error:
 			return {'status': False , 'error': error}
 		else:
 			try:
-				query = "INSERT into users (name, alias,email ,password,birth_date) values (:name, :alias, :email, :password, :birth_date)"
+				query = "INSERT into users (name, alias,email ,password) values (:name, :alias, :email, :password)"
 				data['password'] = self.bcrypt.generate_password_hash(data['password'])
 				user_id = self.db.query_db(query, data)        
 				return {'status': True, "user_id": user_id}

@@ -15,8 +15,7 @@ class Welcome(Controller):
 			'alias': request.form['alias'],
 			'email': request.form['email'],
 			'password': request.form['password'],
-			'confirm': request.form['confirm'],
-			'birth_date': request.form['date']
+			'confirm': request.form['confirm']
 		}
 		reg_status = self.models['WelcomeModel'].register(data)
 		if reg_status['status'] == True:
